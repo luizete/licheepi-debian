@@ -16,7 +16,13 @@ chroot $rootfs_dir dpkg --configure -a
 chroot $rootfs_dir dpkg --configure base-files
 chroot $rootfs_dir dpkg --configure bash
 # Empty root password
+chroot $rootfs_dir echo 'nameserver 8.8.8.8' > $rootfs_dir/etc/resolv.conf
+
+sleep 5
+chroot $rootfs_dir pip3 install setuptools wheel
+chroot $rootfs_dir pip3 install python-rtmidi smbus
 chroot $rootfs_dir passwd -d root
+
 # Kill processes running in rootfs
 fuser -sk $rootfs_dir
 rm $rootfs_dir/usr/bin/qemu-arm-static
@@ -35,6 +41,7 @@ cp interfaces $rootfs_dir/etc/network/
 
 # Add modules to start at boot
 echo g_ether >> $rootfs_dir/etc/modules
+
 
 # Fix dhcp server for RNDIS usb
 #echo "subnet 192.168.11.0 netmask 255.255.255.0 {

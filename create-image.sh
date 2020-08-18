@@ -40,7 +40,7 @@ mount -t vfat /dev/loop0 licheepi-image/BOOT
 
 # Mount second partition
 
-losetup -o 562036736 --sizelimit 1G /dev/loop1 licheepi-debian.img
+losetup -o 562036736 --sizelimit 2G /dev/loop1 licheepi-debian.img
 mkfs.ext4 /dev/loop1 -L rootfs
 mount -t ext4 /dev/loop1 licheepi-image/rootfs
 

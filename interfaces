@@ -2,12 +2,9 @@
 # Include files from /etc/network/interfaces.d:
 source-directory /etc/network/interfaces.d
 
-allow-hotplug eth0
-iface eth0 inet dhcp
-
 allow-hotplug usb0
 auto usb0
 iface usb0 inet static
-      address 192.168.11.2
+      address 192.168.2.100
       netmask 255.255.255.0
-      gateway 192.168.11.1
+      gateway 192.168.2.100
